@@ -1,0 +1,19 @@
+#Editor or system directories and files
+.idea/
+.DS_Store/
+__pycache__/
+.vscode/
+
+#test files
+.pytest_cache/
+.cache
+
+# local env files
+.env.local
+.env.*.local
+env.sh
+_debug_*
+ipynb_checkpoints/
+*.ipynb
+.DS_Store
+*.log
