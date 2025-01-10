@@ -1,6 +1,5 @@
 import uvicorn
-import time
-from fastapi import FastAPI, WebSocket
+from fastapi import FastAPI
 import models
 from app import app_info, MyException
 from router.autoload import routers
@@ -59,28 +58,18 @@ else:
     prefix = ""
     app = FastAPI(docs_url=None, redoc_url=None)
 
-
+@app.on_event("startup")
 async def init_db():
     db_url = app_info.config().mysql.get_dsn()
     await models.init(db_url)
 
 
-app.add_exception_handler(
-    RequestValidationError, request_validation_exception_handler_422
-)
+app.add_exception_handler(RequestValidationError, request_validation_exception_handler_422)
 app.add_exception_handler(MyException, request_myexception_handler)
 
-app.add_event_handler("startup", init_db)
 for row in routers:
     app.include_router(row)
 
-
-@app.websocket("/ws")
-async def websocket_endpoint(websocket: WebSocket):
-    await websocket.accept()
-    while True:
-        await websocket.send_text(f"Message text was: {time.time()}")
-        time.sleep(3)
 
 def main():
     workers = app_info.config().module.workers

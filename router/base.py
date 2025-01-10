@@ -4,7 +4,6 @@ import traceback
 from app import app_info, MyException
 from fastapi import Header, Request
 from tortoise.exceptions import IntegrityError
-import models
 
 
 def decorator(function):

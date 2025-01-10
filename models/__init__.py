@@ -1,7 +1,6 @@
 from tortoise import Tortoise
 from tortoise.queryset import QuerySet
 from .models import *
-# from app import app_info
 
 
 class Pagination(object):

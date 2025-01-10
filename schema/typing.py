@@ -1,16 +1,8 @@
 from pydantic import constr
 from datetime import datetime
-import re
 
 Str_10 = constr(strip_whitespace=True, max_length=10)
-Str_64 = constr(strip_whitespace=True, max_length=64)
-Str_40 = constr(strip_whitespace=True, max_length=40)
-Str_32 = constr(strip_whitespace=True, max_length=32)
-Str_16 = constr(strip_whitespace=True, max_length=16)
-Str = constr(strip_whitespace=True)
-Str_50_No_Empty = constr(strip_whitespace=True, min_length=1, max_length=50)
-Str_100_No_Empty = constr(strip_whitespace=True, min_length=1, max_length=100)
-Str_200_No_Empty = constr(strip_whitespace=True, min_length=1, max_length=200)
+Str_10_No_Empty = constr(strip_whitespace=True, min_length=1, max_length=10)
 
 
 class DateTime(str):
